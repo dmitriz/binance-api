@@ -52,10 +52,13 @@ const createClient = (args = {}) => {
     if (method === 'GET') {
       axiosConfig.params = Object.fromEntries(queryParams);
     } else {
-      axiosConfig.data = params;
+      // For POST requests, handle differently
       if (auth) {
-        // For POST with auth, we need to include the query params in the URL
+        // For authenticated POST requests, parameters need to be in the query string
         axiosConfig.url = `${fullUrl}?${queryParams.toString()}`;
+      } else {
+        // For non-authenticated POST requests, parameters go in the body
+        axiosConfig.data = params;
       }
     }
     

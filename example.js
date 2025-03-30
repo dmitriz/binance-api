@@ -14,7 +14,14 @@ getAccountInfo(
   error => console.error('Error:', error)
 );
 
-// Example 3: Place a test order with parameters
+// Example 3: Get exchange information (public endpoint)
+const getExchangeInfo = createClient({ endpoint: 'exchangeInfo' });
+getExchangeInfo(
+  response => console.log('Exchange info (symbols count):', response.symbols?.length),
+  error => console.error('Error:', error)
+);
+
+// Example 4: Place a test order with parameters
 const testOrder = createClient({
   endpoint: 'testOrder',
   symbol: 'BTCUSDT',
