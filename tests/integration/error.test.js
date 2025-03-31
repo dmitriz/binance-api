@@ -1,14 +1,5 @@
 const test = require('ava');
-const { createClient } = require('../../client');
-
-// Import the helper directly to avoid any path resolution issues
-const promisifyClient = (args) => {
-  const clientFn = createClient(args);
-  
-  return new Promise((resolve, reject) => {
-    clientFn(resolve, reject);
-  });
-};
+const { promisifyClient } = require('../helpers');
 
 test('should handle unknown endpoint', async t => {
   const error = await t.throwsAsync(() => 

@@ -1,14 +1,5 @@
 const test = require('ava');
-const { createClient } = require('../../client');
-
-// Import helper directly for consistency with other test files
-const promisifyClient = (args) => {
-  const clientFn = createClient(args);
-  
-  return new Promise((resolve, reject) => {
-    clientFn(resolve, reject);
-  });
-};
+const { promisifyClient } = require('../helpers');
 
 test('should get account information', async t => {
   try {
