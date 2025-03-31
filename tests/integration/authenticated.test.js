@@ -7,9 +7,7 @@ test('should get account information', async t => {
     t.truthy(response);
     t.truthy(response.balances);
     t.true(Array.isArray(response.balances));
-    console.log('Account info test passed');
   } catch (error) {
-    // Stringify the error to make sure all properties are visible in test output
     t.fail(JSON.stringify(error, null, 2));
   }
 });
@@ -28,9 +26,7 @@ test('should test order creation', async t => {
     
     // Test order should either return empty object or order details
     t.truthy(response);
-    console.log('Test order creation passed');
   } catch (error) {
-    // Stringify the error to make sure all properties are visible in test output
     t.fail(JSON.stringify(error, null, 2));
   }
 });
@@ -49,9 +45,7 @@ test('should test limit order creation', async t => {
     
     // Test order should either return empty object or order details
     t.truthy(response);
-    console.log('Limit order creation test passed');
   } catch (error) {
-    // Stringify the error to make sure all properties are visible in test output
     t.fail(JSON.stringify(error, null, 2));
   }
 });
@@ -68,7 +62,6 @@ test('should test market order creation', async t => {
     
     // Test order should either return empty object or order details
     t.truthy(response);
-    console.log('Market order creation test passed');
   } catch (error) {
     // Stringify the error to make sure all properties are visible in test output
     t.fail(JSON.stringify(error, null, 2));
@@ -89,7 +82,6 @@ test('should test sell limit order creation', async t => {
     
     // Test order should either return empty object or order details
     t.truthy(response);
-    console.log('Sell limit order creation test passed');
   } catch (error) {
     // Stringify the error to make sure all properties are visible in test output
     t.fail(JSON.stringify(error, null, 2));
@@ -108,7 +100,6 @@ test('should test sell market order creation', async t => {
     
     // Test order should either return empty object or order details
     t.truthy(response);
-    console.log('Sell market order creation test passed');
   } catch (error) {
     // Stringify the error to make sure all properties are visible in test output
     t.fail(JSON.stringify(error, null, 2));

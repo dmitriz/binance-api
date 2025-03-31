@@ -6,14 +6,12 @@ test('should get server time', async t => {
   t.truthy(response);
   t.truthy(response.serverTime);
   t.is(typeof response.serverTime, 'number');
-  console.log('Server time test passed');
 });
 
 test('should ping server', async t => {
   const response = await promisifyClient({ endpoint: 'ping' });
   // Ping response should be an empty object
   t.deepEqual(response, {});
-  console.log('Ping test passed');
 });
 
 test('should get exchange info', async t => {
@@ -22,7 +20,6 @@ test('should get exchange info', async t => {
   t.true(Array.isArray(response.symbols));
   // Check if BTCUSDT exists in the symbols
   t.true(response.symbols.some(symbol => symbol.symbol === 'BTCUSDT'));
-  console.log('Exchange info test passed');
 });
 
 test('should get depth for a symbol', async t => {
@@ -37,7 +34,6 @@ test('should get depth for a symbol', async t => {
   t.truthy(response.asks);
   t.true(Array.isArray(response.bids));
   t.true(Array.isArray(response.asks));
-  console.log('Depth test passed');
 });
 
 test('should get recent trades for a symbol', async t => {
@@ -56,5 +52,4 @@ test('should get recent trades for a symbol', async t => {
     t.truthy(trade.qty);
     t.truthy(trade.time);
   }
-  console.log('Trades test passed');
 });
