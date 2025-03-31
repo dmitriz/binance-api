@@ -9,14 +9,8 @@ test('should get account information', async t => {
     t.true(Array.isArray(response.balances));
     console.log('Account info test passed');
   } catch (error) {
-    // If API credentials are invalid, this test will pass with an error check
-    if (error.code === -2015) { // Invalid API key error
-      console.warn('⚠️  WARNING: Invalid API key - check your .env file');
-      t.is(error.code, -2015);
-      t.pass('Test passed with expected authentication error');
-    } else {
-      throw error; // Re-throw if it's an unexpected error
-    }
+    // Stringify the error to make sure all properties are visible in test output
+    t.fail(JSON.stringify(error, null, 2));
   }
 });
 
@@ -36,13 +30,7 @@ test('should test order creation', async t => {
     t.truthy(response);
     console.log('Test order creation passed');
   } catch (error) {
-    // If API credentials are invalid, this test will pass with an error check
-    if (error.code === -2015) { // Invalid API key error
-      console.warn('⚠️  WARNING: Invalid API key - check your .env file');
-      t.is(error.code, -2015);
-      t.pass('Test passed with expected authentication error');
-    } else {
-      throw error; // Re-throw if it's an unexpected error
-    }
+    // Stringify the error to make sure all properties are visible in test output
+    t.fail(JSON.stringify(error, null, 2));
   }
 });
