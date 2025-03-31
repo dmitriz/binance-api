@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const API_KEY = process.env.BINANCE_API_KEY;
 const API_SECRET = process.env.BINANCE_API_SECRET;
-const API_URL = process.env.BINANCE_API_URL || 'https://api.binance.com';
+const API_URL = process.env.BINANCE_API_URL;
 
 // Creates signature for authenticated endpoints
 const createSignature = (queryString) => {
