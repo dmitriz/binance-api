@@ -54,7 +54,7 @@ orderTestCases.forEach(({ name, params }) => {
     try {
       const response = await promisifyClient({
         endpoint: 'testOrder',
-        symbol: 'BTCUSDT',
+        symbol: 'BTCUSDC',
         quantity: '0.001',
         ...params
       });

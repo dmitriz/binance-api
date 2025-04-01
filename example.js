@@ -24,7 +24,7 @@ getExchangeInfo(
 // Example 4: Place a test order with parameters
 const testOrder = createClient({
   endpoint: 'testOrder',
-  symbol: 'BTCUSDT',
+  symbol: 'BTCUSDC',
   side: 'BUY',
   type: 'LIMIT',
   timeInForce: 'GTC',

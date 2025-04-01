@@ -18,14 +18,14 @@ test('should get exchange info', async t => {
   const response = await promisifyClient({ endpoint: 'exchangeInfo' });
   t.truthy(response);
   t.true(Array.isArray(response.symbols));
-  // Check if BTCUSDT exists in the symbols
-  t.true(response.symbols.some(symbol => symbol.symbol === 'BTCUSDT'));
+  // Check if BTCUSDC exists in the symbols
+  t.true(response.symbols.some(symbol => symbol.symbol === 'BTCUSDC'));
 });
 
 test('should get depth for a symbol', async t => {
   const response = await promisifyClient({ 
     endpoint: 'depth',
-    symbol: 'BTCUSDT',
+    symbol: 'BTCUSDC',
     limit: 5
   });
   
@@ -39,7 +39,7 @@ test('should get depth for a symbol', async t => {
 test('should get recent trades for a symbol', async t => {
   const response = await promisifyClient({ 
     endpoint: 'trades',
-    symbol: 'BTCUSDT',
+    symbol: 'BTCUSDC',
     limit: 5
   });
   
