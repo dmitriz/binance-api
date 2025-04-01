@@ -12,96 +12,57 @@ test('should get account information', async t => {
   }
 });
 
-test('should test order creation', async t => {
-  try {
-    const response = await promisifyClient({
-      endpoint: 'testOrder',
-      symbol: 'BTCUSDT',
+// Test scenarios for order creation
+const orderTestCases = [
+  {
+    name: 'buy limit',
+    params: {
       side: 'BUY',
       type: 'LIMIT',
       timeInForce: 'GTC',
-      quantity: '0.001',
       price: '20000'
-    });
-    
-    // Test order should either return empty object or order details
-    t.truthy(response);
-  } catch (error) {
-    t.fail(JSON.stringify(error, null, 2));
-  }
-});
-
-test('should test limit order creation', async t => {
-  try {
-    const response = await promisifyClient({
-      endpoint: 'testOrder',
-      symbol: 'BTCUSDT',
+    }
+  },
+  {
+    name: 'buy market',
+    params: {
       side: 'BUY',
+      type: 'MARKET'
+    }
+  },
+  {
+    name: 'sell limit',
+    params: {
+      side: 'SELL', 
       type: 'LIMIT',
       timeInForce: 'GTC',
-      quantity: '0.001',
-      price: '20000'
-    });
-    
-    // Test order should either return empty object or order details
-    t.truthy(response);
-  } catch (error) {
-    t.fail(JSON.stringify(error, null, 2));
-  }
-});
-
-test('should test market order creation', async t => {
-  try {
-    const response = await promisifyClient({
-      endpoint: 'testOrder',
-      symbol: 'BTCUSDT',
-      side: 'BUY',
-      type: 'MARKET',
-      quantity: '0.001'
-    });
-    
-    // Test order should either return empty object or order details
-    t.truthy(response);
-  } catch (error) {
-    // Stringify the error to make sure all properties are visible in test output
-    t.fail(JSON.stringify(error, null, 2));
-  }
-});
-
-test('should test sell limit order creation', async t => {
-  try {
-    const response = await promisifyClient({
-      endpoint: 'testOrder',
-      symbol: 'BTCUSDT',
+      price: '30000'
+    }
+  },
+  {
+    name: 'sell market',
+    params: {
       side: 'SELL',
-      type: 'LIMIT',
-      timeInForce: 'GTC',
-      quantity: '0.001',
-      price: '30000'  // Higher than current price for a sell order
-    });
-    
-    // Test order should either return empty object or order details
-    t.truthy(response);
-  } catch (error) {
-    // Stringify the error to make sure all properties are visible in test output
-    t.fail(JSON.stringify(error, null, 2));
+      type: 'MARKET'
+    }
   }
-});
+];
 
-test('should test sell market order creation', async t => {
-  try {
-    const response = await promisifyClient({
-      endpoint: 'testOrder',
-      symbol: 'BTCUSDT',
-      side: 'SELL',
-      type: 'MARKET',
-      quantity: '0.001'
-    });
-    
-    // Test order should either return empty object or order details
-    t.truthy(response);
-  } catch (error) {
-    // Stringify the error to make sure all properties are visible in test output
-    t.fail(JSON.stringify(error, null, 2));
-  }
+// Run tests for each test case
+orderTestCases.forEach(({ name, params }) => {
+  test(`should test ${name} order creation`, async t => {
+    try {
+      const response = await promisifyClient({
+        endpoint: 'testOrder',
+        symbol: 'BTCUSDT',
+        quantity: '0.001',
+        ...params
+      });
+      
+      // Test order should either return empty object or order details
+      t.truthy(response);
+    } catch (error) {
+      t.fail(JSON.stringify(error, null, 2));
+    }
+  });
 });
